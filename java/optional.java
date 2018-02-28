@@ -23,7 +23,8 @@ public class MyClass {
           orElse와 orElseGet의 차이가 아니라
           Eager evaluation와 Lazy evaluation의 차이
           function argument가 call-by-value로 전달될때 evaluation을 하기때문에 NPE 발생
-          참고 : https://blog.rapid7.com/2017/01/13/java-8-lazy-argument-evaluation/
+          참고 : https://stackoverflow.com/questions/36861514/java-optional-evaluation-side-effects
+                https://blog.rapid7.com/2017/01/13/java-8-lazy-argument-evaluation/
                 http://mussebio.blogspot.kr/2012/05/java-call-by-valuereference.html
         */
         
