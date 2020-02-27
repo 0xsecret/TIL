@@ -14,6 +14,8 @@
 
     https://javaplant.tistory.com/32
     https://docs.oracle.com/javase/8/docs/api/java/lang/FunctionalInterface.html
+    
+    https://stackoverflow.com/questions/25779184/explanation-of-generic-t-extends-comparable-super-t-in-collection-sort-com
 */
 
 @FunctionalInterface
