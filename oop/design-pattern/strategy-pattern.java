@@ -1,4 +1,3 @@
-
 /*
     * 출처 : https://softwaredevelopmentstuff.com/2016/09/11/strategy-pattern-5-examples-from-java-se/
             https://ko.wikipedia.org/wiki/%EC%A0%84%EB%9E%B5_%ED%8C%A8%ED%84%B4
@@ -8,16 +7,13 @@
     Strategy : public interface Comparator<T>
     ConcreteStrategies : StrategyAComparator, StrategyBComparator
 
-
     * 추가적으로 공부한것
     @FunctionalInterface
+    java.util.function.Function
 
     https://javaplant.tistory.com/32
     https://docs.oracle.com/javase/8/docs/api/java/lang/FunctionalInterface.html
-    
-    https://stackoverflow.com/questions/25779184/explanation-of-generic-t-extends-comparable-super-t-in-collection-sort-com
 */
-
 @FunctionalInterface
 interface Comparator<T> {
     int compare(T o1, T o2);
@@ -37,19 +33,30 @@ class StrategyBComparator implements Comparator<String> {
 
 public class Main {
 
+    static Comparator strategy;
+
+    private static <T> void setStrategy(Comparator<? super T> c) {
+        strategy = c;
+    }
+
+    public static <T> void sort(T[] array) {
+        sort(array, strategy);
+    }
+
     public static void main(String[] args) {
         String[] stringArray = {"GoF", "Strategy", "Design pattern"};
 
         //aggregation
-        sort(stringArray, new StrategyAComparator());
+        setStrategy(new StrategyAComparator());
+        sort(stringArray);
 
         //aggregation
         sort(stringArray, new StrategyBComparator());
 
-        //aggregation, method reference
+        //aggregation, method reference, high-order-function
         sort(stringArray, String::compareTo);
 
-        //aggregation, lambda
+        //aggregation, lambda, high-order-function
         sort(stringArray, (String o1, String o2) -> Integer.compare(o1.length(), o2.length()));
 
     }
@@ -70,5 +77,4 @@ public class Main {
         array[i] = array[j];
         array[j] = temp;
     }
-
 }
